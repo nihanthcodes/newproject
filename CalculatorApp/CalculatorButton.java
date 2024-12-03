@@ -2,7 +2,6 @@ package CalculatorApp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.function.Function;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -15,7 +14,9 @@ public class CalculatorButton extends JButton implements ActionListener{
     public CalculatorButton(String label, CalculatorFrame currentCalc){
         this.label = label;
         this.currentCalc = currentCalc;
-        JButton button = new JButton(label);
+        this.setText(label);
+        currentCalc.add(this);
+        this.addActionListener(this);
     }
     
     @Override
@@ -25,25 +26,32 @@ public class CalculatorButton extends JButton implements ActionListener{
         if (command.equals("=")) {
             try {
                 double result = evaluate(currentCalc.getCurrentInput());
-                display.setText(String.valueOf(result));
-                currentInput = String.valueOf(result); ; 
+                System.out.println(result);
+                currentCalc.setDisplayText(String.valueOf(result));
             } catch (Exception ex) {
-                display.setText("Error");
-                currentInput = "";
+                System.out.println(ex);
+                currentCalc.setDisplayText("Error grrr");
+                currentCalc.setCurrentInput("");
             }
         } else if (command.equals("C")) {
-            currentInput = "";
-            display.setText("");
+            currentCalc.setCurrentInput("");
+            currentCalc.setDisplayText("");
         } else {
-            currentInput += command;
-            display.setText(currentInput);
+            currentCalc.setCurrentInput(currentCalc.getCurrentInput() + command);
+            currentCalc.setDisplayText(currentCalc.getCurrentInput());
         }
     }
 
     public double evaluate(String input) {
         try {
+            System.out.println(input);
+
+            
             ScriptEngineManager mgr = new ScriptEngineManager();
             ScriptEngine engine = mgr.getEngineByName("JavaScript");
+            
+
+            System.out.println(engine.eval("2+2"));
             return (double) engine.eval(input);
         } catch (Exception e) {
             throw new RuntimeException("Invalid expression");

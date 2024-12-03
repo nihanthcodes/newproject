@@ -16,7 +16,6 @@ public class Board extends JFrame{
         super();
         super.setTitle("BOARD!");
         super.setSize(400, 600);
-        super.setTitle("yashna");
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         for (int i=0; i<9; i++){
