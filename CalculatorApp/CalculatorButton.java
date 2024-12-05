@@ -43,20 +43,25 @@ public class CalculatorButton extends JButton implements ActionListener{
     }
 
     public double evaluate(String input) {
-        try {
-            
-            
-            System.out.println(input);
+        String resultString = new String(input);
 
-            
-            ScriptEngineManager mgr = new ScriptEngineManager();
-            ScriptEngine engine = mgr.getEngineByName("JavaScript");
-            
-
-            System.out.println(engine.eval("2+2"));
-            return (double) engine.eval(input);
-        } catch (Exception e) {
-            throw new RuntimeException("Invalid expression");
+        while ((input.indexOf("*") != -1) || (input.indexOf("/") != -1)){
+            // need to fix based on add & subtract logic
+            int currentOp = Math.min(input.indexOf("*"), input.indexOf("/"));
         }
+
+        while ((input.indexOf("+") != -1) || (input.indexOf("-") != -1)){
+            int currentOp = input.indexOf("+");
+            if ((input.indexOf("-") != -1) && (currentOp > input.indexOf("-"))){
+                currentOp = input.indexOf("-");
+            } else if (currentOp == -1){
+                currentOp = input.indexOf("-");
+            }
+
+
+        }
+
+        return 2.5;
+        
     }
 }
