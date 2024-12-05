@@ -57,7 +57,7 @@ public class CalculatorButton extends JButton implements ActionListener{
             } else if (currentOp == -1){
                 currentOp = input.indexOf("-");
             }
-
+            
 
         }
 
