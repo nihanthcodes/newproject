@@ -46,7 +46,7 @@ class CalculatorFrame extends JFrame {
         super.add(buttonPanel, BorderLayout.CENTER);
         super.pack();  
         super.setLocationRelativeTo(null);
-        super.setVisible(true); // Move this line to the end
+        super.setVisible(true); 
     }
 
     public String getCurrentInput() {
