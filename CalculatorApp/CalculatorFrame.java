@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -30,12 +31,13 @@ class CalculatorFrame extends JFrame {
         super.add(display, BorderLayout.NORTH);
     
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4, 4, 10, 10)); 
+        buttonPanel.setLayout(new GridLayout(5, 4, 0, 0)); 
         String[] buttons = {
             "1", "2", "3", "+",
             "4", "5", "6", "-",
             "7", "8", "9", "*",
-            "C", "0", "=", "/"
+            ".", "0", "=", "/",
+            "sqrt", "squared", "(", ")"
         };
     
         for (String label : buttons) {
@@ -43,7 +45,11 @@ class CalculatorFrame extends JFrame {
             buttonPanel.add(button);
         }
         
+        CalculatorButton clearButton = new CalculatorButton("C", this);
+        super.add(clearButton, BorderLayout.SOUTH);
         super.add(buttonPanel, BorderLayout.CENTER);
+
+        
         super.pack();  
         super.setLocationRelativeTo(null);
         super.setVisible(true); 
